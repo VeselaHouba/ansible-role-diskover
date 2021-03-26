@@ -1,0 +1,35 @@
+---
+- name: Prepare dir for diskover
+  file:
+    path: "{{ diskover_persistent_path }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Upload diskover config
+  copy:
+    src: files/diskover.cfg
+    dest: "{{ diskover_persistent_path }}/diskover.cfg"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Upload docker compose
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ diskover_persistent_path }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Apply elasticsearch requirements
+  sysctl:
+    name: vm.max_map_count
+    value: "262144"
+
+- name: Deploy docker compose
+  include_role:
+    name: veselahouba.docker_container
+  vars:
+    docker_composes: "{{ diskover_docker_composes }}"

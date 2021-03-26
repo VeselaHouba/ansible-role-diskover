@@ -1,0 +1,4 @@
+---
+roles:
+  - name: veselahouba.docker
+  - name: veselahouba.docker_container

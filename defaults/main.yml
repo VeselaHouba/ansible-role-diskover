@@ -1,0 +1,12 @@
+---
+# Diskover variables
+diskover_persistent_path: /opt/docker/diskover/
+diskover_persist_data: false
+diskover_local_port: "9080"
+diskover_es_memory: "512m"
+diskover_docker_composes:
+  - name: diskover
+    project_src: "{{ diskover_persistent_path }}"
+
+# Dependencies variables
+docker_version: docker-ce
