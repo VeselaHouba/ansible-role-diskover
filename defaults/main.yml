@@ -1,5 +1,6 @@
 ---
 # Diskover variables
+diskover_image: veselahouba/diskover
 diskover_persistent_path: /opt/docker/diskover/
 diskover_persist_data: false
 diskover_local_port: "9080"
@@ -7,6 +8,7 @@ diskover_es_memory: "512m"
 diskover_docker_composes:
   - name: diskover
     project_src: "{{ diskover_persistent_path }}"
+diskover_ssh_key: files/diskover.key
 
 # Dependencies variables
 docker_version: docker-ce
