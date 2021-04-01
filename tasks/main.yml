@@ -17,7 +17,7 @@
   with_items:
     - filename: diskover.cfg
     - filename: diskover.key.pub
-    - filename: diskover.key
+    - filename: "{{ diskover_ssh_key }}"
       mode: "0600"
 
 - name: Upload docker compose
