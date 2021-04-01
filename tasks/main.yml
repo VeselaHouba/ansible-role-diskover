@@ -10,14 +10,13 @@
 - name: Upload diskover config
   copy:
     src: "{{ item.filename }}"
-    dest: "{{ diskover_persistent_path }}/{{ item.filename }}"
+    dest: "{{ diskover_persistent_path }}/{{ item.filename|basename }}"
     owner: root
     group: root
     mode: "{{ item.mode|default('0644') }}"
   with_items:
     - filename: diskover.cfg
-    - filename: diskover.key.pub
-    - filename: diskover.key
+    - filename: "{{ diskover_ssh_key }}"
       mode: "0600"
 
 - name: Upload docker compose
